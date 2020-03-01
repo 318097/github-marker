@@ -1,0 +1,14 @@
+{
+  "name": "Github Marker",
+  "version": "1.0",
+  "description": "Link marker for Github",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["*://github.com/*"],
+      "css": ["src/styles.css"],
+      "js": ["src/content-script.js"]
+    }
+  ],
+  "manifest_version": 2
+}
