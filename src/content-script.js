@@ -62,34 +62,35 @@ window.onload = () => {
     listElements.forEach(listElement => {
       const link = listElement.querySelector("a");
       if (link) {
-        const spanElement = document.createElement("span");
-        spanElement.setAttribute("class", "checkboxContainer");
+        const container = document.createElement("span");
+
+        // Checkbox element
+        const checkboxContainer = document.createElement("span");
+        checkboxContainer.setAttribute("class", "gm-checkboxContainer");
 
         const linkUrl = link.href;
         const isChecked = database[linkUrl];
 
         if (isChecked) {
-          listElement.setAttribute("class", "finished");
+          listElement.setAttribute("class", "gm-checked");
         }
 
         const checkbox = document.createElement("input");
         checkbox.checked = isChecked;
         checkbox.setAttribute("type", "checkbox");
-        checkbox.setAttribute("class", "checkbox");
+        checkbox.setAttribute("class", "gm-checkbox");
         checkbox.setAttribute("data-url", linkUrl);
 
-        spanElement.appendChild(checkbox);
+        checkboxContainer.appendChild(checkbox);
 
-        listElement.insertBefore(spanElement, listElement.childNodes[0]);
+        listElement.insertBefore(checkboxContainer, listElement.childNodes[0]);
       }
     });
   }
 
   function handleClick(event) {
-    if (
-      event.target.type === "checkbox" &&
-      event.target.className === "checkbox"
-    ) {
+    const { type, className } = event.target;
+    if (type === "checkbox" && className === "gm-checkbox") {
       const url = event.target.getAttribute("data-url");
       const checkedValue = event.target.checked;
       saveData(url, "checked", checkedValue);
