@@ -5,15 +5,30 @@ const config = {
 
 let database = {};
 
+function getDomain() {
+  const url = window.location.href;
+  const arr = url.split("?");
+  return arr[0];
+}
+
 function getDataFromChromStorage(key, cb) {
   chrome.storage.sync.get(key, cb);
 }
 
-function saveData(url, checkedValue) {
+function saveData(url, key = "checked", value) {
   if (config.storage === "CHROME") {
     getDataFromChromStorage(config.dbName, data => {
-      const prevdata = data[config.dbName] || {};
-      const updatedData = { ...prevdata, [url]: checkedValue };
+      const storageData = data[config.dbName] || {};
+      const domain = getDomain();
+      const domainData = storageData[domain] || {};
+
+      if (!domainData[url]) {
+        domainData[url] = { checked: false };
+      }
+
+      domainData[url][key] = value;
+
+      const updatedData = { ...storageData, [domain]: domainData };
       chrome.storage.sync.set({ [config.dbName]: updatedData });
     });
   }
@@ -33,7 +48,10 @@ window.onload = () => {
       initializeAppWithData();
     } else if (config.storage === "CHROME") {
       getDataFromChromStorage(config.dbName, data => {
-        database = data[config.dbName];
+        console.log("Data::", data);
+        const domain = getDomain();
+        const storageData = data[config.dbName] || {};
+        database = storageData[domain] || {};
         initializeAppWithData();
       });
     }
@@ -74,7 +92,7 @@ window.onload = () => {
     ) {
       const url = event.target.getAttribute("data-url");
       const checkedValue = event.target.checked;
-      saveData(url, checkedValue);
+      saveData(url, "checked", checkedValue);
     }
   }
 
