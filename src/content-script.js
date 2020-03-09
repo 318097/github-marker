@@ -70,7 +70,7 @@ window.onload = () => {
         checkboxContainer.setAttribute("class", "gm-wrapper");
 
         const linkUrl = link.href;
-        const isChecked = database[linkUrl];
+        const isChecked = database[linkUrl] && database[linkUrl]["checked"];
 
         if (isChecked) {
           listElement.setAttribute("class", "gm-checked");
