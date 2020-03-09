@@ -58,7 +58,7 @@ window.onload = () => {
   }
 
   function initializeAppWithData() {
-    const listElements = document.querySelectorAll(".Box .Box-body li");
+    const listElements = document.querySelectorAll(".Box-body li");
     listElements.forEach(listElement => {
       const link = listElement.querySelector("a");
       if (link) {

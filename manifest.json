@@ -5,10 +5,11 @@
   "permissions": ["storage"],
   "content_scripts": [
     {
-      "matches": ["*://github.com/*"],
+      "matches": ["*://github.com/*", "*://gist.github.com/*"],
       "css": ["src/styles.css"],
       "js": ["src/content-script.js"]
     }
   ],
-  "manifest_version": 2
+  "manifest_version": 2,
+  "web_accessible_resources": ["src/assets/test.png"]
 }
