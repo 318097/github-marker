@@ -1,27 +1,33 @@
-.gm-container {
+.gm-app-container {
   position: relative;
   top: 2px;
   margin-right: 3px;
   padding: 0 2px;
   display: inline-block;
-  background: #ddd;
+  background: #eee;
   width: max-content;
   border-radius: 2px;
-  height: min-height;
+}
+
+.gm-container {
+  padding: 3px 1px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .gm-wrapper {
-  height: 24px;
-  width: 24px;
-  margin: 0 3px;
-  position: relative;
-  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 2px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .gm-checkbox {
+  position: relative;
+  top: -1px;
 }
 
 .gm-checked {
@@ -29,9 +35,7 @@
 }
 
 .gm-heart-icon {
-  height: 24px;
-  width: 24px;
+  height: 14px;
+  width: 14px;
   overflow: hidden;
-  background: url("./assets/heart.svg");
-  fill: red;
 }

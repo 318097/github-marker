@@ -59,13 +59,11 @@ window.onload = () => {
 
   function initializeAppWithData() {
     const listElements = document.querySelectorAll(".Box-body li");
+    const heartLogo = chrome.runtime.getURL("heart.svg");
+
     listElements.forEach(listElement => {
       const link = listElement.querySelector("a");
       if (link) {
-        const container = document.createElement("span");
-        container.setAttribute("class", "gm-container");
-
-        // Checkbox element
         const checkboxContainer = document.createElement("span");
         checkboxContainer.setAttribute("class", "gm-wrapper");
 
@@ -83,10 +81,28 @@ window.onload = () => {
         checkbox.setAttribute("data-url", linkUrl);
 
         checkboxContainer.appendChild(checkbox);
+        // ----------------------------------------------------------------
+        const favoriteContainer = document.createElement("span");
+        favoriteContainer.setAttribute("class", "gm-wrapper");
+
+        const heart = document.createElement("img");
+        heart.setAttribute("src", heartLogo);
+        heart.setAttribute("class", "gm-heart-icon");
+
+        favoriteContainer.appendChild(heart);
+        //  ----------------------------------------------------------------
+        const appContainer = document.createElement("span");
+        appContainer.setAttribute("class", "gm-app-container");
+
+        const container = document.createElement("span");
+        container.setAttribute("class", "gm-container");
 
         container.appendChild(checkboxContainer);
+        container.appendChild(favoriteContainer);
 
-        listElement.insertBefore(container, listElement.childNodes[0]);
+        appContainer.appendChild(container);
+
+        listElement.insertBefore(appContainer, listElement.childNodes[0]);
       }
     });
   }
