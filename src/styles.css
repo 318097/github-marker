@@ -1,23 +1,37 @@
-.checkboxContainer {
+.gm-container {
+  position: relative;
+  top: 2px;
+  margin-right: 3px;
+  padding: 0 2px;
+  display: inline-block;
+  background: #ddd;
+  width: max-content;
+  border-radius: 2px;
+  height: min-height;
+}
+
+.gm-wrapper {
   height: 24px;
   width: 24px;
-  top: 5px;
-  margin-right: 3px;
-  display: inline-block;
-  /* justify-content: center; */
-  /* align-items: center; */
-  border-radius: 50%;
-  background: #ccc;
+  margin: 0 3px;
   position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.checkbox {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.gm-checkbox {
 }
 
-.finished {
+.gm-checked {
   text-decoration: line-through;
+}
+
+.gm-heart-icon {
+  height: 24px;
+  width: 24px;
+  overflow: hidden;
+  background: url("./assets/heart.svg");
+  fill: red;
 }

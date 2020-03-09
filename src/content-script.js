@@ -63,10 +63,11 @@ window.onload = () => {
       const link = listElement.querySelector("a");
       if (link) {
         const container = document.createElement("span");
+        container.setAttribute("class", "gm-container");
 
         // Checkbox element
         const checkboxContainer = document.createElement("span");
-        checkboxContainer.setAttribute("class", "gm-checkboxContainer");
+        checkboxContainer.setAttribute("class", "gm-wrapper");
 
         const linkUrl = link.href;
         const isChecked = database[linkUrl];
@@ -83,7 +84,9 @@ window.onload = () => {
 
         checkboxContainer.appendChild(checkbox);
 
-        listElement.insertBefore(checkboxContainer, listElement.childNodes[0]);
+        container.appendChild(checkboxContainer);
+
+        listElement.insertBefore(container, listElement.childNodes[0]);
       }
     });
   }
