@@ -39,3 +39,15 @@
   width: 14px;
   overflow: hidden;
 }
+
+.gm-favorite {
+  border-radius: 5px;
+  padding: 3px 5px;
+  background: tomato;
+}
+
+.gm-favorite a,
+.gm-favorite *,
+.gm-favorite strong a {
+  color: whitesmoke;
+}

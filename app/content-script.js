@@ -15,18 +15,17 @@ function getDataFromChromStorage(key, cb) {
   chrome.storage.sync.get(key, cb);
 }
 
-function saveData(url, key = "checked", value) {
+function saveData(url, key) {
   if (config.storage === "CHROME") {
     getDataFromChromStorage(config.dbName, data => {
       const storageData = data[config.dbName] || {};
       const domain = getDomain();
       const domainData = storageData[domain] || {};
 
-      if (!domainData[url]) {
-        domainData[url] = { checked: false };
-      }
+      if (!domainData[url])
+        domainData[url] = { checked: false, favorite: false };
 
-      domainData[url][key] = value;
+      domainData[url][key] = !domainData[url][key];
 
       const updatedData = { ...storageData, [domain]: domainData };
       chrome.storage.sync.set({ [config.dbName]: updatedData });
@@ -64,15 +63,14 @@ window.onload = () => {
     listElements.forEach(listElement => {
       const link = listElement.querySelector("a");
       if (link) {
+        const linkUrl = link.href;
+
         const checkboxContainer = document.createElement("span");
         checkboxContainer.setAttribute("class", "gm-wrapper");
 
-        const linkUrl = link.href;
         const isChecked = database[linkUrl] && database[linkUrl]["checked"];
 
-        if (isChecked) {
-          listElement.setAttribute("class", "gm-checked");
-        }
+        if (isChecked) listElement.setAttribute("class", "gm-checked");
 
         const checkbox = document.createElement("input");
         checkbox.checked = isChecked;
@@ -85,9 +83,14 @@ window.onload = () => {
         const favoriteContainer = document.createElement("span");
         favoriteContainer.setAttribute("class", "gm-wrapper");
 
+        const isFavorite = database[linkUrl] && database[linkUrl]["favorite"];
+
+        if (isFavorite) listElement.setAttribute("class", "gm-favorite");
+
         const heart = document.createElement("img");
         heart.setAttribute("src", heartLogo);
         heart.setAttribute("class", "gm-heart-icon");
+        heart.setAttribute("data-url", linkUrl);
 
         favoriteContainer.appendChild(heart);
         //  ----------------------------------------------------------------
@@ -108,12 +111,12 @@ window.onload = () => {
   }
 
   function handleClick(event) {
-    const { type, className } = event.target;
-    if (type === "checkbox" && className === "gm-checkbox") {
-      const url = event.target.getAttribute("data-url");
-      const checkedValue = event.target.checked;
-      saveData(url, "checked", checkedValue);
-    }
+    const { className } = event.target;
+    const url = event.target.getAttribute("data-url");
+    let key;
+    if (className === "gm-checkbox") key = "checked";
+    else if (className === "gm-heart-icon") key = "favorite";
+    saveData(url, key);
   }
 
   init();
