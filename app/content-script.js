@@ -58,6 +58,7 @@ window.onload = () => {
 
   function initializeAppWithData() {
     const listElements = document.querySelectorAll(".Box-body li");
+
     const heartSVG = chrome.runtime.getURL("heart.svg");
     const bookmarkSVG = chrome.runtime.getURL("bookmark.svg");
 
@@ -71,7 +72,7 @@ window.onload = () => {
 
         const isChecked = database[linkUrl] && database[linkUrl]["checked"];
 
-        if (isChecked) listElement.setAttribute("class", "gm-checked");
+        if (isChecked) link.setAttribute("class", "gm-checked");
 
         const checkbox = document.createElement("input");
         checkbox.checked = isChecked;
@@ -86,7 +87,7 @@ window.onload = () => {
 
         const isFavorite = database[linkUrl] && database[linkUrl]["favorite"];
 
-        if (isFavorite) listElement.setAttribute("class", "gm-favorite");
+        if (isFavorite) link.setAttribute("class", "gm-favorite");
 
         const heart = document.createElement("img");
         heart.setAttribute("src", heartSVG);
@@ -100,7 +101,7 @@ window.onload = () => {
 
         const isBookmarked = database[linkUrl] && database[linkUrl]["bookmark"];
 
-        if (isBookmarked) listElement.setAttribute("class", "gm-bookmark");
+        if (isBookmarked) link.setAttribute("class", "gm-bookmark");
 
         const bookmark = document.createElement("img");
         bookmark.setAttribute("src", bookmarkSVG);
@@ -127,12 +128,26 @@ window.onload = () => {
   }
 
   function handleClick(event) {
-    const { className } = event.target;
     const url = event.target.getAttribute("data-url");
+
+    if (!url) return;
+
+    const parentLINode = event.target.closest("li");
+    const linkNode = parentLINode.querySelector("a");
+
+    const { className } = event.target;
     let key;
-    if (className === "gm-checkbox") key = "checked";
-    else if (className === "gm-heart-icon") key = "favorite";
-    else if (className === "gm-bookmark-icon") key = "bookmark";
+
+    if (className === "gm-checkbox") {
+      key = "checked";
+      linkNode.classList.toggle("gm-checked");
+    } else if (className === "gm-heart-icon") {
+      key = "favorite";
+      linkNode.classList.toggle("gm-favorite");
+    } else if (className === "gm-bookmark-icon") {
+      key = "bookmark";
+      linkNode.classList.toggle("gm-bookmark");
+    }
     saveData(url, key);
   }
 

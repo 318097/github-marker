@@ -30,21 +30,23 @@
   top: -1px;
 }
 
-.gm-checked {
-  text-decoration: line-through;
-}
-
 .gm-heart-icon,
 .gm-bookmark-icon {
   height: 14px;
   width: 14px;
   overflow: hidden;
 }
-
+.gm-checked,
 .gm-favorite,
 .gm-bookmark {
-  border-radius: 0px;
-  padding: 4px 6px;
+  border-radius: 2px;
+  padding: 1px 3px;
+  color: whitesmoke;
+}
+
+.gm-checked {
+  text-decoration: line-through;
+  background: lightgrey;
 }
 
 .gm-favorite {
@@ -53,13 +55,4 @@
 
 .gm-bookmark {
   background: lightgreen;
-}
-
-.gm-favorite a,
-.gm-favorite *,
-.gm-favorite strong a,
-.gm-bookmark a,
-.gm-bookmark *,
-.gm-bookmark strong a {
-  color: whitesmoke;
 }
