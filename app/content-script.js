@@ -23,7 +23,7 @@ function saveData(url, key) {
       const domainData = storageData[domain] || {};
 
       if (!domainData[url])
-        domainData[url] = { checked: false, favorite: false };
+        domainData[url] = { checked: false, favorite: false, bookmark: false };
 
       domainData[url][key] = !domainData[url][key];
 
@@ -58,7 +58,8 @@ window.onload = () => {
 
   function initializeAppWithData() {
     const listElements = document.querySelectorAll(".Box-body li");
-    const heartLogo = chrome.runtime.getURL("heart.svg");
+    const heartSVG = chrome.runtime.getURL("heart.svg");
+    const bookmarkSVG = chrome.runtime.getURL("bookmark.svg");
 
     listElements.forEach(listElement => {
       const link = listElement.querySelector("a");
@@ -88,11 +89,25 @@ window.onload = () => {
         if (isFavorite) listElement.setAttribute("class", "gm-favorite");
 
         const heart = document.createElement("img");
-        heart.setAttribute("src", heartLogo);
+        heart.setAttribute("src", heartSVG);
         heart.setAttribute("class", "gm-heart-icon");
         heart.setAttribute("data-url", linkUrl);
 
         favoriteContainer.appendChild(heart);
+        // ----------------------------------------------------------------
+        const bookmarkContainer = document.createElement("span");
+        bookmarkContainer.setAttribute("class", "gm-wrapper");
+
+        const isBookmarked = database[linkUrl] && database[linkUrl]["bookmark"];
+
+        if (isBookmarked) listElement.setAttribute("class", "gm-bookmark");
+
+        const bookmark = document.createElement("img");
+        bookmark.setAttribute("src", bookmarkSVG);
+        bookmark.setAttribute("class", "gm-bookmark-icon");
+        bookmark.setAttribute("data-url", linkUrl);
+
+        bookmarkContainer.appendChild(bookmark);
         //  ----------------------------------------------------------------
         const appContainer = document.createElement("span");
         appContainer.setAttribute("class", "gm-app-container");
@@ -102,6 +117,7 @@ window.onload = () => {
 
         container.appendChild(checkboxContainer);
         container.appendChild(favoriteContainer);
+        container.appendChild(bookmarkContainer);
 
         appContainer.appendChild(container);
 
@@ -116,6 +132,7 @@ window.onload = () => {
     let key;
     if (className === "gm-checkbox") key = "checked";
     else if (className === "gm-heart-icon") key = "favorite";
+    else if (className === "gm-bookmark-icon") key = "bookmark";
     saveData(url, key);
   }
 

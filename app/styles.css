@@ -34,20 +34,32 @@
   text-decoration: line-through;
 }
 
-.gm-heart-icon {
+.gm-heart-icon,
+.gm-bookmark-icon {
   height: 14px;
   width: 14px;
   overflow: hidden;
 }
 
+.gm-favorite,
+.gm-bookmark {
+  border-radius: 0px;
+  padding: 4px 6px;
+}
+
 .gm-favorite {
-  border-radius: 5px;
-  padding: 3px 5px;
   background: tomato;
+}
+
+.gm-bookmark {
+  background: lightgreen;
 }
 
 .gm-favorite a,
 .gm-favorite *,
-.gm-favorite strong a {
+.gm-favorite strong a,
+.gm-bookmark a,
+.gm-bookmark *,
+.gm-bookmark strong a {
   color: whitesmoke;
 }
