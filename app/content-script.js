@@ -69,6 +69,7 @@ window.onload = () => {
 
         const checkboxContainer = document.createElement("span");
         checkboxContainer.setAttribute("class", "gm-wrapper");
+        checkboxContainer.setAttribute("title", "Link read");
 
         const isChecked = database[linkUrl] && database[linkUrl]["checked"];
 
@@ -84,6 +85,7 @@ window.onload = () => {
         // ----------------------------------------------------------------
         const favoriteContainer = document.createElement("span");
         favoriteContainer.setAttribute("class", "gm-wrapper");
+        favoriteContainer.setAttribute("title", "Favorite Link");
 
         const isFavorite = database[linkUrl] && database[linkUrl]["favorite"];
 
@@ -98,6 +100,7 @@ window.onload = () => {
         // ----------------------------------------------------------------
         const bookmarkContainer = document.createElement("span");
         bookmarkContainer.setAttribute("class", "gm-wrapper");
+        bookmarkContainer.setAttribute("title", "Bookmark Link");
 
         const isBookmarked = database[linkUrl] && database[linkUrl]["bookmark"];
 
