@@ -1,7 +1,15 @@
 {
   "name": "github-marker",
+  "author": "Mehul Lakhanpal (https://github.com/318097)",
   "version": "1.0.0",
   "description": "Link marker for Github",
-  "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": [
+    "chrome",
+    "chrome-extension",
+    "github",
+    "marker",
+    "github-marker",
+    "link-marker"
+  ]
 }
