@@ -11,5 +11,11 @@
     }
   ],
   "manifest_version": 2,
-  "web_accessible_resources": ["heart.svg", "bookmark.svg"]
+  "web_accessible_resources": ["heart.svg", "bookmark.svg"],
+  "icons": {
+    "16": "assets/logo_16x16.png",
+    "32": "assets/logo_32x32.png",
+    "64": "assets/logo_64x64.png",
+    "128": "assets/logo_128x128.png"
+  }
 }
