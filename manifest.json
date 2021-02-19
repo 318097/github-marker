@@ -1,21 +1,31 @@
 {
   "name": "Github Marker",
-  "version": "1.0",
+  "version": "2.0",
   "description": "Link marker for Github",
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "content_scripts": [
     {
-      "matches": ["*://github.com/*", "*://gist.github.com/*"],
-      "css": ["styles.css"],
-      "js": ["content-script.js"]
+      "matches": [
+        "*://github.com/*",
+        "*://gist.github.com/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "content-script.js"
+      ]
     }
   ],
   "manifest_version": 2,
-  "web_accessible_resources": ["heart.svg", "bookmark.svg"],
-  "icons": {
-    "16": "assets/logo_16x16.png",
-    "32": "assets/logo_32x32.png",
-    "64": "assets/logo_64x64.png",
-    "128": "assets/logo_128x128.png"
-  }
+  "web_accessible_resources": [
+    "assets/heart.v2.svg",
+    "assets/heart-hollow.v2.svg",
+    "assets/bookmark.v2.svg",
+    "assets/bookmark-hollow.v2.svg",
+    "assets/check.v2.svg",
+    "assets/check-hollow.v2.svg"
+  ]
 }

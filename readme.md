@@ -2,7 +2,7 @@
 
 ## **A chrome extension marker for Github links**
 
-![Github Marker Preview](github-marker-preview.gif)
+![Github Marker Preview](other-assets/github-marker-preview.gif)
 
 ## Features
 
@@ -13,3 +13,11 @@
 ---
 
 Note: Extension available only for **github** links
+
+### Release Notes
+
+#### v2
+- New Icons
+- Moved checkbox to icon
+- Tracking icons form on & off states
+- Refactored folder structure

@@ -5,9 +5,8 @@
   padding: 0 2px;
   display: inline-block;
   background: white;
-  border: 2px solid #eee;
+  border: 1px solid #eee;
   width: max-content;
-  border-radius: 2px;
   cursor: pointer;
 }
 
@@ -26,11 +25,7 @@
   justify-content: center;
 }
 
-.gm-checkbox {
-  position: relative;
-  top: -1px;
-}
-
+.gm-checkbox-icon,
 .gm-heart-icon,
 .gm-bookmark-icon {
   height: 14px;
@@ -40,20 +35,19 @@
 .gm-checked,
 .gm-favorite,
 .gm-bookmark {
-  border-radius: 2px;
-  padding: 1px 3px;
+  padding: 2px 4px;
   color: whitesmoke;
 }
 
 .gm-checked {
   text-decoration: line-through;
-  background: lightgrey;
+  background: #cbe558;
 }
 
 .gm-favorite {
-  background: tomato;
+  background: #ff5e95;
 }
 
 .gm-bookmark {
-  background: lightgreen;
+  background: #4dcfe0;
 }
