@@ -21,12 +21,12 @@
   ],
   "manifest_version": 2,
   "web_accessible_resources": [
-    "assets/heart.v2.svg",
-    "assets/heart-hollow.v2.svg",
-    "assets/bookmark.v2.svg",
-    "assets/bookmark-hollow.v2.svg",
-    "assets/check.v2.svg",
-    "assets/check-hollow.v2.svg"
+    "assets/v2/heart.svg",
+    "assets/v2/heart-hollow.svg",
+    "assets/v2/bookmark.svg",
+    "assets/v2/bookmark-hollow.svg",
+    "assets/v2/check.svg",
+    "assets/v2/check-hollow.svg"
   ],
   "icons": {
     "16": "icons/v2/icon16.png",

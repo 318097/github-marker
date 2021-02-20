@@ -6,13 +6,13 @@ window.onload = () => {
 
   let database = {};
 
-  const checkSVG = chrome.runtime.getURL("assets/check.v2.svg");
-  const checkHollowSVG = chrome.runtime.getURL("assets/check-hollow.v2.svg");
-  const heartSVG = chrome.runtime.getURL("assets/heart.v2.svg");
-  const heartHollowSVG = chrome.runtime.getURL("assets/heart-hollow.v2.svg");
-  const bookmarkSVG = chrome.runtime.getURL("assets/bookmark.v2.svg");
+  const checkSVG = chrome.runtime.getURL("assets/v2/check.svg");
+  const checkHollowSVG = chrome.runtime.getURL("assets/v2/check-hollow.svg");
+  const heartSVG = chrome.runtime.getURL("assets/v2/heart.svg");
+  const heartHollowSVG = chrome.runtime.getURL("assets/v2/heart-hollow.svg");
+  const bookmarkSVG = chrome.runtime.getURL("assets/v2/bookmark.svg");
   const bookmarkHollowSVG = chrome.runtime.getURL(
-    "assets/bookmark-hollow.v2.svg"
+    "assets/v2/bookmark-hollow.svg"
   );
 
   function getDomain() {
