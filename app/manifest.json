@@ -1,7 +1,7 @@
 {
   "name": "Github Marker",
   "version": "2.0",
-  "description": "Link marker for Github",
+  "description": "Favorite, Bookmark & Mark link as Read in Github",
   "permissions": [
     "storage"
   ],
