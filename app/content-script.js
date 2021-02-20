@@ -25,26 +25,31 @@ window.onload = () => {
     chrome.storage.sync.get(key, cb);
   }
 
-  function saveData(url, key) {
-    if (config.storage === "CHROME") {
-      getDataFromChromStorage(config.dbName, (data) => {
-        const storageData = data[config.dbName] || {};
-        const domain = getDomain();
-        const domainData = storageData[domain] || {};
+  async function saveData(url, key) {
+    return new Promise((resolve) => {
+      if (config.storage === "CHROME") {
+        getDataFromChromStorage(config.dbName, (data) => {
+          const storageData = data[config.dbName] || {};
+          const domain = getDomain();
+          const domainData = storageData[domain] || {};
 
-        if (!domainData[url])
-          domainData[url] = {
-            checked: false,
-            favorite: false,
-            bookmark: false,
-          };
+          if (!domainData[url])
+            domainData[url] = {
+              checked: false,
+              favorite: false,
+              bookmark: false,
+            };
 
-        domainData[url][key] = !domainData[url][key];
+          const newStatus = !domainData[url][key];
+          domainData[url][key] = newStatus;
 
-        const updatedData = { ...storageData, [domain]: domainData };
-        chrome.storage.sync.set({ [config.dbName]: updatedData });
-      });
-    }
+          const updatedData = { ...storageData, [domain]: domainData };
+          chrome.storage.sync.set({ [config.dbName]: updatedData });
+
+          resolve(newStatus);
+        });
+      }
+    });
   }
 
   // function clearNotes() {
@@ -60,7 +65,7 @@ window.onload = () => {
       initializeAppWithData();
     } else if (config.storage === "CHROME") {
       getDataFromChromStorage(config.dbName, (data) => {
-        console.log("Data::", data);
+        // console.log("Data::", data);
         const domain = getDomain();
         const storageData = data[config.dbName] || {};
         database = storageData[domain] || {};
@@ -103,22 +108,6 @@ window.onload = () => {
       if (link) {
         const linkUrl = link.href;
 
-        // const checkboxContainer = document.createElement("span");
-        // checkboxContainer.setAttribute("class", "gm-wrapper");
-        // checkboxContainer.setAttribute("title", "Link read");
-
-        // const isChecked = database[linkUrl] && database[linkUrl]["checked"];
-
-        // if (isChecked) link.setAttribute("class", "gm-checked");
-
-        // const checkbox = document.createElement("input");
-        // checkbox.checked = isChecked;
-        // checkbox.setAttribute("type", "checkbox");
-        // checkbox.setAttribute("class", "gm-checkbox");
-        // checkbox.setAttribute("data-url", linkUrl);
-
-        // checkboxContainer.appendChild(checkbox);
-
         const checkboxContainer = createActionNode({
           title: "Link read",
           action: "checked",
@@ -160,7 +149,7 @@ window.onload = () => {
     });
   }
 
-  function handleClick(event) {
+  async function handleClick(event) {
     const url = event.target.getAttribute("data-url");
 
     if (!url) return;
@@ -182,9 +171,8 @@ window.onload = () => {
       linkNode.classList.toggle("gm-bookmark");
     }
 
-    const newStatus = !(database[url] && database[url][key]);
+    const newStatus = await saveData(url, key);
     event.target.src = getIcon({ action: key, isActive: newStatus });
-    saveData(url, key);
   }
 
   init();
