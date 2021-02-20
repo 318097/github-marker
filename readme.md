@@ -2,7 +2,7 @@
 
 ## **A chrome extension marker for Github links**
 
-![Github Marker Preview](assets/github-marker-preview.gif)
+![Github Marker Preview](assets/preview.gif)
 
 ## Features
 
