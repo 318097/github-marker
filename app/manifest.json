@@ -1,6 +1,6 @@
 {
   "name": "Github Marker",
-  "version": "2.0",
+  "version": "3.0",
   "description": "Favorite, Bookmark & Mark link as Read in Github",
   "permissions": [
     "storage"
@@ -19,14 +19,21 @@
       ]
     }
   ],
-  "manifest_version": 2,
+  "manifest_version": 3,
   "web_accessible_resources": [
-    "assets/v2/heart.svg",
-    "assets/v2/heart-hollow.svg",
-    "assets/v2/bookmark.svg",
-    "assets/v2/bookmark-hollow.svg",
-    "assets/v2/check.svg",
-    "assets/v2/check-hollow.svg"
+    {
+      "resources": [
+        "assets/v2/heart.svg",
+        "assets/v2/heart-hollow.svg",
+        "assets/v2/bookmark.svg",
+        "assets/v2/bookmark-hollow.svg",
+        "assets/v2/check.svg",
+        "assets/v2/check-hollow.svg"
+      ],
+      "matches": [
+        "*://github.com/*"
+      ]
+    }
   ],
   "icons": {
     "16": "icons/v2/icon16.png",
