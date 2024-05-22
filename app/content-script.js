@@ -101,7 +101,7 @@ window.onload = () => {
   }
 
   function initializeAppWithData() {
-    const listElements = document.querySelectorAll(".Box-body li");
+    const listElements = document.querySelectorAll("article.markdown-body li");
 
     listElements.forEach((listElement) => {
       const link = listElement.querySelector("a");
